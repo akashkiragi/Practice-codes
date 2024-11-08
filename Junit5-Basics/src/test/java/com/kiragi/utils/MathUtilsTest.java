@@ -8,7 +8,13 @@ class MathUtilsTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		
+		
+		MathUtils mathUtils = new MathUtils();
+		int expectedVal = 2;
+		int actualVal = mathUtils.addTwoNm(1, 4);
+		assertEquals(expectedVal, actualVal);
+		
 	}
 
 }
