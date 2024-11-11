@@ -4,13 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-class MathUtilsTest {
+@TestInstance(Lifecycle.PER_METHOD)
+class MathUtilsTestInstance {
 	
 	/**
-	 * beforeAll and AfterAll are declared using the static keyword
-	 * as it doesn't require of instance of the class
+	 * beforeAll and AfterAll are declared without static keyword
+	 * when it annotated with @TestInstance
 	 */
 	@BeforeAll
 	static void beforeAllInit() {
@@ -23,6 +28,7 @@ class MathUtilsTest {
 	}
 	
 	@Test
+	@DisplayName("The Addition test")
 	void testAddMathUtils() {
 		MathUtils mathUtils = new MathUtils();
 		int expectedVal = 2;
@@ -31,21 +37,35 @@ class MathUtilsTest {
 	}
 	
 	@Test
+	@DisplayName("Test to calculate Area of circle")
 	void testAreaOfCirecle() {
 		MathUtils mathUtils = new MathUtils();
 		
 		assertEquals(314.2, mathUtils.calculateAreOfCirecle(10));
 	}
+	
 	/*
 	 * this method is for the assert throws where it works similar to try catch
 	 * if zero is passed throw a fail or throw an exception
 	 */
 	@Test
+	@DisplayName("Test to verify Divide Methoda nd assertThrow")
 	void testDividdeMethod() {
 		MathUtils mathUtils = new MathUtils();
 		System.out.println(mathUtils.divideTwoNm(1,1));
-		assertFalse(mathUtils.divideTwoNm(1,1) < 0);
-		//assertThrows(ArithmeticException.class, () -> mathUtils.divideTwoNm(1,1), "Exception occured as it divide by zero");
+		//assertFalse(mathUtils.divideTwoNm(1,1) < 0);
+		assertThrows(ArithmeticException.class, () -> mathUtils.divideTwoNm(1,0), "Exception occured as it divide by zero");
 	}
-
+	
+	
+	/**
+	 * This is the Disabled test case which will be marked as cross
+	 * where it is neither pass nor fail
+	 */
+	@Test
+	@DisplayName("This is the TDD disable test")
+	@Disabled
+	void disabledTest() {
+		fail("This test is disabled ");
+	}
 }
