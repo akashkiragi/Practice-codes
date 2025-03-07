@@ -46,7 +46,7 @@ class MathUtilsTestInstance {
 	
 	/*
 	 * this method is for the assert throws where it works similar to try catch
-	 * if zero is passed throw a fail or throw an exception
+	 * if zero is passe throw a fail or throw an exception
 	 */
 	@Test
 	@DisplayName("Test to verify Divide Methoda nd assertThrow")
